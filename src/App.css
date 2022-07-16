@@ -1,0 +1,66 @@
+body {
+  background-color: rgb(51, 47, 47);
+}
+.App {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.section {
+  height: 190px;
+  width: 220px;
+  border-radius: 10px;
+  border: 2px solid aqua;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.numberDisplay {
+  height: 90px;
+  width: 200px;
+  border-radius: 10px;
+  background-color:  aqua;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+}
+
+.buttoms {
+  height: 60px;
+  width: 200px;
+  border-radius: 10px;
+  border: 2px solid aqua;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.buttonInc {
+  height: 30px;
+  width: 60px;
+  border-radius: 8px;
+  background-color:  aqua;
+  border: none;
+}
+
+.buttonInc:active{
+  opacity: 0.6;
+}
+
+.buttonReset {
+  height: 30px;
+  width: 60px;
+  border-radius: 8px;
+  background-color:  aqua;
+  border: none;
+}
+
+.redNum {
+  color: red;
+}
