@@ -4,29 +4,30 @@ import s from './Counter.module.css';
 export type valueType = {
   value: number
   setValue: (value: number) => void
+  maxValue: number
+  startValue: number
 }
 
-export const Counter = () => {
+export const Counter = ({ value, setValue, maxValue, startValue }: valueType) => {
 
-  const [value, setValue] = useState<number>(0);
-
-  const incValue = () => setValue(value + 1);
-  const resetValue = () => setValue(0);
-
+  const incValue = () => setValue(+value + 1);
+  const resetValue = () => setValue(startValue);
+  console.log(maxValue);
+  console.log(value)
   return (
     <div className={s.Counter}>
       <div className={s.section}>
 
-        <div className={`${s.numberDisplay} ${value === 5 ? s.redNum : ""} `}>{value}</div>
+        <div className={`${s.numberDisplay} ${value == maxValue ? s.redNum : ""} `}>{value}</div>
         <div className={s.buttoms}>
 
           <button
-            className={value === 5 ? `${s.buttonReset}` : `${s.buttonInc}` } onClick={incValue}
-            disabled={value === 5 ? true : false }>INC</button>
+            className={value == maxValue ? `${s.buttonReset}` : `${s.buttonInc}`} onClick={incValue}
+            disabled={value == maxValue ? true : false}>INC</button>
 
-          <button 
-          className={value === 5 ? s.buttonInc : s.buttonReset } onClick={resetValue }
-          disabled={value === 0 ? true : false }>RESET</button>
+          <button
+            className={value == maxValue ? s.buttonInc : s.buttonReset} onClick={resetValue}
+            disabled={value == startValue ? true : false}>RESET</button>
 
         </div>
       </div>
