@@ -1,5 +1,5 @@
 import { TextField } from '@mui/material';
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import s from './Settings.module.css';
 
 export type valueType = {
@@ -8,32 +8,37 @@ export type valueType = {
   setValue: (value: number) => void
   setMaxValue: (maxValue: number) => void
   setStartValue: (startValue: number) => void
+  setSwitchToSettings:  (switchToSettings: boolean) => void
 }
 
-export const Settings = ({startValue, maxValue, setMaxValue, setStartValue, setValue}: valueType ) => {
+export const Settings = ({ startValue, maxValue, setMaxValue, setStartValue, setValue, setSwitchToSettings }: valueType) => {
 
-  const onChangeSetMaxValue = (e: any) => setMaxValue(e.currentTarget.value)
-  const onChangeSetStartValue = (e: any) => setStartValue(e.currentTarget.value)
+  const onChangeSetMaxValue = (e: any) => {
+    setMaxValue(+e.currentTarget.value)
+  }
+  const onChangeSetStartValue = (e: any) => setStartValue(+e.currentTarget.value)
 
-  const setFromLocalStorage = () => {
-    localStorage.setItem('maxValue', JSON.stringify(maxValue))
-    localStorage.setItem('startValue', JSON.stringify(startValue))
-    setValue(startValue)
-  };
-
-  const getFromLocalStorage = () => {
+  useEffect(() => {
     let valueAsStringMax = localStorage.getItem('maxValue')
     let valueAsStringStart = localStorage.getItem('startValue')
-    if (valueAsStringMax  || valueAsStringStart) {
+    if (valueAsStringMax || valueAsStringStart) {
       //@ts-ignore
       let newMaxValue = JSON.parse(valueAsStringMax)
       //@ts-ignore
       let newStartValue = JSON.parse(valueAsStringStart)
-      setMaxValue(newMaxValue)
-      setStartValue(newStartValue)
+      setMaxValue(+newMaxValue)
+      setStartValue(+newStartValue)
     }
-  };
+  }, [])
 
+  const setFromLocalStorage = () => {
+    localStorage.setItem('maxValue', JSON.stringify(maxValue))
+    localStorage.setItem('startValue', JSON.stringify(startValue))
+    setValue(+startValue)
+    setSwitchToSettings(false)
+  };
+  
+  
   return (
     <div className={s.Settings}>
       <div className={s.section}>
@@ -46,7 +51,7 @@ export const Settings = ({startValue, maxValue, setMaxValue, setStartValue, setV
               shrink: true,
             }}
             value={maxValue}
-          onChange={onChangeSetMaxValue}
+            onChange={onChangeSetMaxValue}
           />
           start value: <TextField
             id="standard-number"
@@ -61,7 +66,10 @@ export const Settings = ({startValue, maxValue, setMaxValue, setStartValue, setV
         </div>
 
         <div className={s.buttoms}>
-          <button onClick={setFromLocalStorage}>SET</button>
+          <button
+            onClick={setFromLocalStorage}
+            disabled={(maxValue === startValue) || (maxValue < startValue ) || (maxValue <= 0)}
+            >SET</button>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './Counter.module.css';
 
 export type valueType = {
@@ -6,14 +6,16 @@ export type valueType = {
   setValue: (value: number) => void
   maxValue: number
   startValue: number
+  setSwitchToSettings: (switchToSettings: boolean) => void
 }
 
-export const Counter = ({ value, setValue, maxValue, startValue }: valueType) => {
+export const Counter = ({ value, setValue, maxValue, startValue, setSwitchToSettings }: valueType) => {
 
   const incValue = () => setValue(+value + 1);
   const resetValue = () => setValue(startValue);
-  console.log(maxValue);
-  console.log(value)
+
+  const disabled = value == startValue;
+
   return (
     <div className={s.Counter}>
       <div className={s.section}>
@@ -23,11 +25,13 @@ export const Counter = ({ value, setValue, maxValue, startValue }: valueType) =>
 
           <button
             className={value == maxValue ? `${s.buttonReset}` : `${s.buttonInc}`} onClick={incValue}
-            disabled={value == maxValue ? true : false}>INC</button>
+            disabled={disabled}>INC</button>
 
           <button
             className={value == maxValue ? s.buttonInc : s.buttonReset} onClick={resetValue}
-            disabled={value == startValue ? true : false}>RESET</button>
+            disabled={disabled}>RESET</button>
+
+          <button onClick={() => setSwitchToSettings(true)}>SET</button>
 
         </div>
       </div>

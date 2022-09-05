@@ -7,8 +7,8 @@
   }
 
 .section {
-    height: 190px;
-    width: 220px;
+    height: 210px;
+    width: 250px;
     border-radius: 10px;
     border: 2px solid aqua;
     display: flex;
@@ -18,8 +18,8 @@
   }
   
   .numberDisplay {
-    height: 90px;
-    width: 200px;
+    height: 120px;
+    width: 220px;
     border-radius: 10px;
     background-color:  aqua;
     display: flex;
@@ -30,7 +30,7 @@
   
   .buttoms {
     height: 60px;
-    width: 200px;
+    width: 220px;
     border-radius: 10px;
     border: 2px solid aqua;
     display: flex;
