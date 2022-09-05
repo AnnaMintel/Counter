@@ -11,10 +11,11 @@ export type valueType = {
 
 export const Counter = ({ value, setValue, maxValue, startValue, setSwitchToSettings }: valueType) => {
 
-  const incValue = () => setValue(+value + 1);
+  const incValue = () => {setValue(+value + 1); console.log(1);
+  }
   const resetValue = () => setValue(startValue);
 
-  const disabled = value == startValue;
+  const disabled = value == maxValue;
 
   return (
     <div className={s.Counter}>
@@ -25,7 +26,8 @@ export const Counter = ({ value, setValue, maxValue, startValue, setSwitchToSett
 
           <button
             className={value == maxValue ? `${s.buttonReset}` : `${s.buttonInc}`} onClick={incValue}
-            disabled={disabled}>INC</button>
+            disabled={disabled}
+            >INC</button>
 
           <button
             className={value == maxValue ? s.buttonInc : s.buttonReset} onClick={resetValue}
