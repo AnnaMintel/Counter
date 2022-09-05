@@ -8,7 +8,7 @@ export type valueType = {
   setValue: (value: number) => void
   setMaxValue: (maxValue: number) => void
   setStartValue: (startValue: number) => void
-  setSwitchToSettings:  (switchToSettings: boolean) => void
+  setSwitchToSettings: (switchToSettings: boolean) => void
 }
 
 export const Settings = ({ startValue, maxValue, setMaxValue, setStartValue, setValue, setSwitchToSettings }: valueType) => {
@@ -37,16 +37,16 @@ export const Settings = ({ startValue, maxValue, setMaxValue, setStartValue, set
     setValue(+startValue)
     setSwitchToSettings(false)
   };
-  
-  
+
+
   return (
     <div className={s.Settings}>
       <div className={s.section}>
         <div className={s.numberDisplay}>
           max value: <TextField
             id="standard-number"
-            label="Number"
             type="number"
+            size='small'
             InputLabelProps={{
               shrink: true,
             }}
@@ -55,8 +55,8 @@ export const Settings = ({ startValue, maxValue, setMaxValue, setStartValue, set
           />
           start value: <TextField
             id="standard-number"
-            label="Number"
             type="number"
+            size='small'
             InputLabelProps={{
               shrink: true,
             }}
@@ -67,9 +67,10 @@ export const Settings = ({ startValue, maxValue, setMaxValue, setStartValue, set
 
         <div className={s.buttoms}>
           <button
+            className={s.buttonSet}
             onClick={setFromLocalStorage}
-            disabled={(maxValue === startValue) || (maxValue < startValue ) || (maxValue <= 0)}
-            >SET</button>
+            disabled={(maxValue === startValue) || (maxValue < startValue) || (maxValue <= 0)}
+          >SET</button>
         </div>
       </div>
     </div>

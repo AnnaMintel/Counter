@@ -1,64 +1,52 @@
-.Settings{
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.Settings {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .section {
-    height: 210px;
-    width: 250px;
-    border-radius: 10px;
-    border: 2px solid aqua;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-  }
-  
-  .numberDisplay {
-    height: 120px;
-    width: 220px;
-    border-radius: 10px;
-    background-color:  aqua;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-  }
-  
-  .buttoms {
-    height: 60px;
-    width: 220px;
-    border-radius: 10px;
-    border: 2px solid aqua;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-  }
-  
-  .buttonInc {
-    height: 30px;
-    width: 60px;
-    border-radius: 8px;
-    background-color:  aqua;
-    border: none;
-  }
-  
-  .buttonInc:active{
-    opacity: 0.6;
-  }
-  
-  .buttonReset {
-    height: 30px;
-    width: 60px;
-    border-radius: 8px;
-    background-color:  aqua;
-    border: none;
-  }
-  
-  .redNum {
-    color: red;
-  }
+  height: 230px;
+  width: 290px;
+  border-radius: 10px;
+  border: 4px dashed rgba(55, 0, 255, 0.418);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.numberDisplay {
+  height: 160px;
+  width: 270px;
+  border-radius: 10px;
+  background-color: rgba(255, 0, 206, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.buttoms {
+  height: 40px;
+  width: 260px;
+  border-radius: 10px;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.buttonSet {
+  height: 40px;
+  width: 70px;
+  border-radius: 8px;
+  background-color: rgba(0, 255, 72, 0.3);
+  border: none;
+}
+.redNum {
+  color: red;
+}

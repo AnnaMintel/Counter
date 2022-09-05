@@ -31,7 +31,7 @@ export const Counter = ({ value, setValue, maxValue, startValue, setSwitchToSett
             className={value == maxValue ? s.buttonInc : s.buttonReset} onClick={resetValue}
             disabled={disabled}>RESET</button>
 
-          <button onClick={() => setSwitchToSettings(true)}>SET</button>
+          <button className={s.buttonSet} onClick={() => setSwitchToSettings(true)}>SET</button>
 
         </div>
       </div>
