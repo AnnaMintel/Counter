@@ -5,7 +5,7 @@ import s from './Settings.module.css';
 export type valueType = {
   startValue: number
   maxValue: number
-  setValue: (value: number) => void
+  setValue?: (value: number) => void
   setMaxValue: (maxValue: number) => void
   setStartValue: (startValue: number) => void
   setSwitchToSettings: (switchToSettings: boolean) => void
@@ -34,7 +34,7 @@ export const Settings = ({ startValue, maxValue, setMaxValue, setStartValue, set
   const setFromLocalStorage = () => {
     localStorage.setItem('maxValue', JSON.stringify(maxValue))
     localStorage.setItem('startValue', JSON.stringify(startValue))
-    setValue(+startValue)
+    // setValue(+startValue)
     setSwitchToSettings(false)
   };
 
