@@ -1,43 +1,32 @@
 import { TextField } from '@mui/material';
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { onChangeSetMaxValueAC, onChangeSetStartValueAC, resetAC } from '../../redux/counter-reducer';
+import { AppStateType } from '../../redux/store';
 import s from './Settings.module.css';
 
 export type valueType = {
-  startValue: number
-  maxValue: number
-  setValue?: (value: number) => void
-  setMaxValue: (maxValue: number) => void
-  setStartValue: (startValue: number) => void
   setSwitchToSettings: (switchToSettings: boolean) => void
 }
 
-export const Settings = ({ startValue, maxValue, setMaxValue, setStartValue, setValue, setSwitchToSettings }: valueType) => {
+export const Settings = ({ setSwitchToSettings }: valueType) => {
 
-  const onChangeSetMaxValue = (e: any) => {
-    setMaxValue(+e.currentTarget.value)
-  }
-  const onChangeSetStartValue = (e: any) => setStartValue(+e.currentTarget.value)
+  const maxValue = useSelector<AppStateType, number>(state => state.counter.maxValue);
+  const startValue = useSelector<AppStateType, number>(state => state.counter.startValue);
 
-  useEffect(() => {
-    let valueAsStringMax = localStorage.getItem('maxValue')
-    let valueAsStringStart = localStorage.getItem('startValue')
-    if (valueAsStringMax || valueAsStringStart) {
-      //@ts-ignore
-      let newMaxValue = JSON.parse(valueAsStringMax)
-      //@ts-ignore
-      let newStartValue = JSON.parse(valueAsStringStart)
-      setMaxValue(+newMaxValue)
-      setStartValue(+newStartValue)
-    }
-  }, [])
+  const dispatch = useDispatch();
+
+  const onChangeSetStartValue = (e: any) => {
+    dispatch(onChangeSetStartValueAC(+e.currentTarget.value));
+    dispatch(resetAC())
+  };
+  const onChangeSetMaxValue = (e: any) => dispatch(onChangeSetMaxValueAC(+e.currentTarget.value));
 
   const setFromLocalStorage = () => {
     localStorage.setItem('maxValue', JSON.stringify(maxValue))
     localStorage.setItem('startValue', JSON.stringify(startValue))
-    // setValue(+startValue)
     setSwitchToSettings(false)
   };
-
 
   return (
     <div className={s.Settings}>
